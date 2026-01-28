@@ -27,12 +27,26 @@ function getIp(request: NextRequest) {
 
 function isRateLimited(ip: string) {
   const now = Date.now();
-  const timestamps = rateLimitMap.get(ip) ?? [];
-  const recent = timestamps.filter((time) => now - time < rateLimitWindowMs);
+  const timestamps = ratelimitMap.get(ip) ?? [];
+
+  // keep only timestamps inside the window
+  const recent = timestamps.filter(
+    (time) => now - time < rateLimitWindowMs
+  );
+
+  // add current request
   recent.push(now);
-  rateLimitMap.set(ip, recent);
+
+  // ✅ FIX: clean up empty entries to prevent memory growth
+  if (recent.length === 0) {
+    ratelimitMap.delete(ip);
+  } else {
+    ratelimitMap.set(ip, recent);
+  }
+
   return recent.length > rateLimitMax;
 }
+
 
 async function storeLead(payload: LeadPayload) {
   if (process.env.NODE_ENV !== "development") {
