@@ -27,7 +27,7 @@ function getIp(request: NextRequest) {
 
 function isRateLimited(ip: string) {
   const now = Date.now();
-  const timestamps = ratelimitMap.get(ip) ?? [];
+  const timestamps = rateLimitMap.get(ip) ?? [];
 
   // keep only timestamps inside the window
   const recent = timestamps.filter(
@@ -39,9 +39,9 @@ function isRateLimited(ip: string) {
 
   // ✅ FIX: clean up empty entries to prevent memory growth
   if (recent.length === 0) {
-    ratelimitMap.delete(ip);
+    rateLimitMap.delete(ip);
   } else {
-    ratelimitMap.set(ip, recent);
+    rateLimitMap.set(ip, recent);
   }
 
   return recent.length > rateLimitMax;
