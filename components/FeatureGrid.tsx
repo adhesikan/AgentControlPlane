@@ -1,11 +1,4 @@
-import {
-  AlarmTriangle,
-  BadgeCheck,
-  Handshake,
-  Lock,
-  Shield,
-  Timer
-} from "lucide-react";
+import { AlertTriangle, BadgeCheck, Handshake, Lock, Shield, Timer } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -33,7 +26,7 @@ const features = [
   {
     title: "Kill Switches & Safe Mode",
     description: "Pause or roll back execution instantly when behavior drifts out of bounds.",
-    icon: AlarmTriangle
+    icon: AlertTriangle
   },
   {
     title: "Audit Trails & Replay",
