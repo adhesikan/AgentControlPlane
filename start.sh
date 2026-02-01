@@ -6,4 +6,4 @@ if [ ! -f ".next/BUILD_ID" ]; then
   npm run build
 fi
 
-npm run start
+./node_modules/.bin/next start
