@@ -7,6 +7,7 @@ if [ ! -f ".next/BUILD_ID" ]; then
 fi
 
 PORT=${PORT:-3000}
-HOSTNAME=${HOSTNAME:-0.0.0.0}
+HOSTNAME=${NEXT_HOSTNAME:-0.0.0.0}
 
+echo "Starting Next.js on ${HOSTNAME}:${PORT}"
 ./node_modules/.bin/next start -p "${PORT}" -H "${HOSTNAME}"
