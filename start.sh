@@ -6,4 +6,7 @@ if [ ! -f ".next/BUILD_ID" ]; then
   npm run build
 fi
 
-./node_modules/.bin/next start
+PORT=${PORT:-3000}
+HOSTNAME=${HOSTNAME:-0.0.0.0}
+
+./node_modules/.bin/next start -p "${PORT}" -H "${HOSTNAME}"
