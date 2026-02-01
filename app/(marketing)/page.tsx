@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { CTAButton } from "@/components/CTAButton";
 import { FeatureGrid } from "@/components/FeatureGrid";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 const scenarios = [
@@ -45,6 +46,9 @@ export default function HomePage() {
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <CTAButton size="lg" source="hero" />
+              <Button asChild size="lg" variant="secondary">
+                <Link href="/app">Enter Control Plane</Link>
+              </Button>
               <Link
                 href="/use-cases"
                 className="text-sm font-semibold text-primary underline-offset-4 hover:underline"
