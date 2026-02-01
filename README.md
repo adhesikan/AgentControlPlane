@@ -53,6 +53,9 @@ The site is ready for Vercel or Railway:
 
 - Vercel: import the repo and set the environment variables above.
 - Railway: deploy as a Node app, set environment variables, and use `npm run build`/`npm run start`.
+  - If you see `Failed to find Server Action` errors after deploy, it usually means the runtime
+    is using a stale `.next` build. Ensure your build command runs on every deploy or use the
+    provided `start.sh`, which rebuilds when `.next/BUILD_ID` is missing.
 
 ## Project Structure
 

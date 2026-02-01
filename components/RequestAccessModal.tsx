@@ -34,7 +34,13 @@ const RequestAccessContext = React.createContext<RequestAccessContextValue | und
 export function useRequestAccess() {
   const context = React.useContext(RequestAccessContext);
   if (!context) {
-    throw new Error("useRequestAccess must be used within RequestAccessProvider");
+    return {
+      openModal: () => {
+        if (process.env.NODE_ENV !== "production") {
+          console.warn("RequestAccessProvider missing; CTA is disabled.");
+        }
+      }
+    };
   }
   return context;
 }
